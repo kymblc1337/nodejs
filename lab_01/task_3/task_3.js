@@ -51,7 +51,7 @@ exports.editCoordinatesByName = function(pointMas = masOfPoints, name, newx, new
     for (let i = 0; i < pointMas.length; i++) {
         let curpoint = pointMas[i]
         if (curpoint["name"] === name){
-            curpoint = {name: name, x: newx, y:newy}
+            pointMas[i] = {name: name, x: newx, y:newy}
             return editRespsonse.OK
         }
     }
@@ -65,10 +65,13 @@ function readPoints(pointMas = masOfPoints) {
     }
 }
 
-function readPoints(pointMas = masOfPoints) {
-    console.log("We have:")
+function deletePoint(pointMas = masOfPoints, pointName) {
     for (let i = 0; i < pointMas.length; i++) {
-        logPointByIndex(pointMas, i)
+        let point = pointMas[i]
+        if (point["name"] === pointName) {
+            pointMas.splice(i, 1)
+            return
+        }
     }
 }
 
@@ -137,7 +140,7 @@ exports.insideReqt = function(pointMas, leftUp, rightDown) {
 
 let test = require('./task_3')
 
-/*
+
 test.addPoint(masOfPoints, {name: "A", x: 12, y: 5})
 test.addPoint(masOfPoints, {name: "B", x : -4, y : 0})
 test.addPoint(masOfPoints, {name: "C", x : 4, y : 1})
@@ -146,4 +149,3 @@ test.addPoint(masOfPoints, {name: "E", x : 0, y : 0})
 test.addPoint(masOfPoints, {name: "F", x : -4, y : 3})
 test.addPoint(masOfPoints, {name: "J", x : -4, y : -3})
 test.addPoint(masOfPoints, {name: "H", x : 3, y : -5})
-*/

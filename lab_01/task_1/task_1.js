@@ -58,6 +58,17 @@ function logChildByIndex(childMas = masOfChildren, index) {
     return obj["surname"] + ": (" + obj["age"]
 }
 
+function logAvgAge(childMas = masOfChildren) {
+    let avg = 0
+    for (let i = 0; i < childMas.length; i++) {
+        let child = childMas[i]
+        avg += child["age"]
+    }
+    avg /= childMas.length
+    console.log("Average age: ", avg)
+    return avg
+}
+
 function logOldestChild(childMas = masOfChildren) {
     let max = childMas[0]
     for (let i = 0; i < childMas.length; i++) {
@@ -104,3 +115,8 @@ function logChildGroupBySurnameVowel(childMas = masOfChildren) {
         }
     }
 }
+
+addChild(masOfChildren, {surname: "a", age: 12})
+addChild(masOfChildren, {surname: "b", age: 14})
+addChild(masOfChildren, {surname: "c", age: 14})
+

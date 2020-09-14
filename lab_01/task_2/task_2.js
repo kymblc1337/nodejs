@@ -66,13 +66,17 @@ function logStudentById(studentMas = masOfStudents, index) {
 }
 
 function getAvgMarkOfStudentById(studentMas = masOfStudents, id) {
-    let student = studentMas[i]
-    let avg = 0
-    for (let i = 0; i < student["marks"].length; i++) {
-        avg += studentMas["marks"][i]
+    if (studentMas.length === 0) {
+        return 0
+    } else {
+        let student = studentMas[id]
+        let avg = 0
+        for (let i = 0; i < student["marks"].length; i++) {
+            avg += student["marks"][i]
+        }
+        avg /= student["marks"].length
+        return avg
     }
-    avg /= student["marks"].length
-    return avg
 }
 
 function getAvgMarkOfStudentByRecordBook(studentMas = masOfStudents, recordBookNum) {
@@ -128,6 +132,10 @@ addStudent(masOfStudents, {groupNum: 3, recordBookNum: 3, marks: [4, 5, 5]})
 addStudent(masOfStudents, {groupNum: 1, recordBookNum: 4, marks: [5, 5, 5, 5, 5, 7]})
 addStudent(masOfStudents, {groupNum: 1, recordBookNum: 5, marks: []})
 
-
-//addStudent(masOfStudents, {groupNum: 1, recordBookNum: 123, marks: [4, 3, 5]})
-
+logStudentWithNoMarks()
+logStudentMaxMarksGroupByGroup(masOfStudents, 2)
+getAvgMarkOfStudentByRecordBook(masOfStudents, 2)
+editGroupByRecordBook(masOfStudents, 4, 100)
+editMarksByRecordBook(masOfStudents, 5, [2, 3, 2])
+deleteStudent(masOfStudents, 3)
+readStudents()
